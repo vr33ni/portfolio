@@ -1,0 +1,27 @@
+<nav class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <div class="flex gap-6">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/portfolio" class="hover:underline">Portfolio</a>
+        <a href="/contact" class="hover:underline">Contact</a>
+      </div>
+      <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition">
+        Toggle Dark Mode
+      </button>
+    </div>
+  </nav>
+  
+  <!-- ✅ Just one working script -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("toggleDark");
+      if (!toggle) return;
+  
+      toggle.addEventListener("click", () => {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    });
+  </script>
+  
