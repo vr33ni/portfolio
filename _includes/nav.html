@@ -1,29 +1,55 @@
 <nav class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <div class="flex gap-6">
-        <a href="{{ '/' | relative_url }}" class="hover:underline">Home</a>
-        <a href="{{ '/work' | relative_url }}" class="hover:underline">Work</a>
-        <a href="{{ '/about' | relative_url }}" class="hover:underline">About</a>
-        <a href="{{ '/contact' | relative_url }}" class="hover:underline">Contact</a>
-      </div>
-      
-      <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
-        Toggle Dark Mode
-      </button>
+  <div class="max-w-4xl mx-auto flex justify-between items-center">
+
+    <!-- Hamburger Icon (Visible on mobile) -->
+    <button id="hamburger-icon" class="block md:hidden text-blue-600 dark:text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Navigation Links (Visible on larger screens) -->
+    <div id="navbar" class="hidden md:flex space-x-6">
+      <a href="{{ '/' | relative_url }}" class="hover:underline">Home</a>
+      <a href="{{ '/work' | relative_url }}" class="hover:underline">Work</a>
+      <a href="{{ '/about' | relative_url }}" class="hover:underline">About</a>
+      <a href="{{ '/contact' | relative_url }}" class="hover:underline">Contact</a>
     </div>
-  </nav>
-  
-  <!-- ✅ Just one working script -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("toggleDark");
-      if (!toggle) return;
-  
-      toggle.addEventListener("click", () => {
-        const html = document.documentElement;
-        const isDark = html.classList.toggle("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-      });
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
+      Toggle Dark Mode
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu (Initially Hidden) -->
+<div id="mobile-menu" class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800">
+  <a href="{{ '/' | relative_url }}" class="text-blue-600 dark:text-white">Home</a>
+  <a href="{{ '/work' | relative_url }}" class="text-blue-600 dark:text-white">Work</a>
+  <a href="{{ '/about' | relative_url }}" class="text-blue-600 dark:text-white">About</a>
+  <a href="{{ '/contact' | relative_url }}" class="text-blue-600 dark:text-white">Contact</a>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Toggle the mobile menu visibility when the hamburger icon is clicked
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburgerIcon.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Dark mode toggle
+  window.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("toggleDark");
+    if (!toggle) return;
+
+    toggle.addEventListener("click", () => {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
     });
-  </script>
-  
+  });
+</script>
