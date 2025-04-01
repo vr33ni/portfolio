@@ -1,8 +1,12 @@
 <section class="py-10 max-w-xl mx-auto px-6">
 
-  
+  <!-- ✅ Success message rendered first -->
+  <div id="success-msg" style="display: none;" class="bg-green-100 text-green-800 border border-green-300 px-4 py-3 rounded mb-6 text-center flex justify-between items-center">
+    <span>✅ Thanks! Your message has been sent. I’ll get back to you soon.</span>
+    <button id="close-msg" class="ml-4 text-green-800 hover:text-green-600 text-xl leading-none">&times;</button>
+  </div>
 
-  <form id="contact-form" action="https://formspree.io/f/meoalvkw" method="POST" class="space-y-6">
+  <form id="contact-form" action="https://formspree.io/f/meoalvkw" method="POST" class="space-y-6" autocomplete="off">
     <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.baseurl }}/contact/?success=true" />
     <input type="hidden" name="_gotcha" style="display:none">
 
@@ -29,33 +33,29 @@
     </button>
   </form>
 
-  <div id="success-msg" style="display: none;" class="bg-green-100 text-green-800 border border-green-300 px-4 py-3 rounded mb-6 text-center flex justify-between items-center">
-    <span>✅ Thanks! Your message has been sent. I’ll get back to you soon.</span>
-    <button id="close-msg" class="ml-4 text-green-800 hover:text-green-600 text-xl leading-none">&times;</button>
-  </div>
-  
+  <!-- ✅ JS to show message and clear form -->
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
       const showSuccess = params.get("success") === "true";
-  
+
       const msgBox = document.getElementById("success-msg");
       const closeBtn = document.getElementById("close-msg");
       const form = document.getElementById("contact-form");
-  
-      if (showSuccess && msgBox) {
+
+      if (showSuccess && msgBox && form) {
         msgBox.style.display = "flex";
+
+        // ✅ Clear form right away on successful redirect
+        form.reset();
+        form.querySelectorAll("input:not([type='hidden']), textarea").forEach(field => field.value = "");
       }
-  
-      if (closeBtn && msgBox && form) {
+
+      if (closeBtn && msgBox) {
         closeBtn.addEventListener("click", () => {
           msgBox.style.display = "none";
-          form.reset();
-  
-          // Clear non-hidden fields manually (just in case)
-          form.querySelectorAll("input:not([type='hidden']), textarea").forEach(f => f.value = "");
-  
-          // Remove query param from URL
+
+          // ✅ Clean URL when dismissing
           if (window.history.replaceState) {
             const cleanUrl = window.location.href.split("?")[0];
             window.history.replaceState(null, "", cleanUrl);
@@ -64,5 +64,4 @@
       }
     });
   </script>
-  
 </section>
