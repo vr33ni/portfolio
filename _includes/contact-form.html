@@ -38,7 +38,7 @@
     const successMsg = document.getElementById('success-msg');
 
     form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault(); // Prevent default form submission for more flexible handling of the form (clear form after submission)
 
       const formData = new FormData(form);
 
