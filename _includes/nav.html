@@ -2,10 +2,11 @@
     <div class="max-w-4xl mx-auto flex justify-between items-center">
       <div class="flex gap-6">
         <a href="/" class="hover:underline">Home</a>
-        <a href="/portfolio" class="hover:underline">Portfolio</a>
-        <a href="/contact" class="hover:underline">Contact</a>
+        <a href="/{{ site.baseurl }}/portfolio" class="hover:underline">Portfolio</a>
+        <a href="/{{ site.baseurl }}/about" class="hover:underline">About</a>
+        <a href="/{{ site.baseurl }}/contact" class="hover:underline">Contact</a>
       </div>
-      <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition">
+      <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
         Toggle Dark Mode
       </button>
     </div>
