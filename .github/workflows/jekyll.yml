@@ -18,9 +18,8 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.3' # Not needed with a .ruby-version, .tool-versions or mise.toml
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - run: bundle exec rake
+        ruby-version: '3.3' # Adjust this to match the Ruby version in your project (or use .ruby-version file)
+        bundler-cache: true # Cache the Ruby gems (including Jekyll) for faster builds
 
     # Step 3: Install dependencies (Bundler and Jekyll)
     - name: Install dependencies
