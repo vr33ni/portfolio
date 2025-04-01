@@ -3,7 +3,7 @@ name: Jekyll site CI
 on:
   push:
     branches:
-      - main  # Replace with your preferred branch (e.g., 'main' or 'master')
+      - master  # Replace with your preferred branch (e.g., 'main' or 'master')
 
 jobs:
   build:
@@ -18,7 +18,9 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.3'  # You can adjust to your desired version of Ruby
+        ruby-version: '3.3' # Not needed with a .ruby-version, .tool-versions or mise.toml
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - run: bundle exec rake
 
     # Step 3: Install dependencies (Bundler and Jekyll)
     - name: Install dependencies
