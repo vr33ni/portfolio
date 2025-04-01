@@ -3,14 +3,14 @@ name: Jekyll site CI
 on:
   push:
     branches:
-      - main
+      - main  # Replace with your preferred branch (e.g., 'main' or 'master')
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout code
+    # Step 1: Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -18,12 +18,12 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.7.8'  # Use Ruby version 2.7.8 or adjust this version
+        ruby-version: '3.3'  # You can adjust to your desired version of Ruby
 
-    # Step 3: Install dependencies (bundler and Jekyll)
+    # Step 3: Install dependencies (Bundler and Jekyll)
     - name: Install dependencies
       run: |
-        gem install bundler:latest
+        gem install bundler
         bundle install
 
     # Step 4: Build the Jekyll site
@@ -31,9 +31,9 @@ jobs:
       run: |
         bundle exec jekyll build
 
-    # Step 5: Deploy to GitHub Pages
+    # Step 5: Deploy to GitHub Pages (the gh-pages branch)
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site
+        publish_dir: ./_site  # This is the directory where Jekyll builds your site
