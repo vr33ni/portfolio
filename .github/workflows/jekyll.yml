@@ -1,38 +1,39 @@
-name: Build and Deploy Jekyll Site
+name: Jekyll site CI
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    # Step 1: Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
+    # Step 2: Set up Ruby (ensure you are using the correct Ruby version)
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7.8'  # Use Ruby version 2.7.8 or adjust this version
 
-      - name: Install dependencies
-        run: |
-          gem install jekyll
-          gem install bundler
-          bundle install
+    # Step 3: Install dependencies (bundler and Jekyll)
+    - name: Install dependencies
+      run: |
+        gem install bundler:latest
+        bundle install
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
+    # Step 4: Build the Jekyll site
+    - name: Build site
+      run: |
+        bundle exec jekyll build
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git clone --branch gh-pages https://github.com/${{ github.repository }} gh-pages
-          cp -R _site/* gh-pages/
-          cd gh-pages
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push
+    # Step 5: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
