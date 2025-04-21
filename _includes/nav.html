@@ -1,34 +1,49 @@
 <nav class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10">
   <div class="max-w-4xl mx-auto flex justify-between items-center">
-
-    <!-- Hamburger Icon (Visible on mobile) -->
+    <!-- Hamburger Icon for Mobile -->
     <button id="hamburger-icon" class="block md:hidden text-blue-600 dark:text-white">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
 
-    <!-- Navigation Links (Visible on larger screens) -->
+
+    <!-- Navbar Links -->
     <div id="navbar" class="hidden md:flex space-x-6">
-      <a href="{{ '/' | relative_url }}" class="hover:underline">Home</a>
-      <a href="{{ '/work' | relative_url }}" class="hover:underline">Work</a>
-      <a href="{{ '/about' | relative_url }}" class="hover:underline">About</a>
-      <a href="{{ '/contact' | relative_url }}" class="hover:underline">Contact</a>
+      <a href="{{ '/' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].home }}</a>
+      <a href="{{ '/work' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].work }}</a>
+      <a href="{{ '/about' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].about }}</a>
+      <a href="{{ '/contact' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].contact }}</a>
     </div>
-    
-    <!-- Dark Mode Toggle Button -->
-    <button id="toggleDark" class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
-      Toggle Dark Mode
-    </button>
+
+    <!-- Language Switcher -->
+    <div class="language-switcher hidden md:flex space-x-4">
+      <a href="{{ site.baseurl }}/" class="hover:underline {{ page.lang == 'en' ? 'font-bold' : '' }}">EN</a>
+      <a href="{{ site.baseurl }}/de/" class="hover:underline {{ page.lang == 'de' ? 'font-bold' : '' }}">DE</a>
+      <a href="{{ site.baseurl }}/es/" class="hover:underline {{ page.lang == 'es' ? 'font-bold' : '' }}">ES</a>
+    </div>
   </div>
 </nav>
 
+<!-- Dark Mode Toggle Button -->
+<button id="toggleDark"
+  class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
+  Toggle Dark Mode
+</button>
+
 <!-- Mobile Menu (Initially Hidden) -->
 <div id="mobile-menu" class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800">
-  <a href="{{ '/' | relative_url }}" class="text-blue-600 dark:text-white">Home</a>
-  <a href="{{ '/work' | relative_url }}" class="text-blue-600 dark:text-white">Work</a>
-  <a href="{{ '/about' | relative_url }}" class="text-blue-600 dark:text-white">About</a>
-  <a href="{{ '/contact' | relative_url }}" class="text-blue-600 dark:text-white">Contact</a>
+  <a href="{{ '/' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].home }}</a>
+  <a href="{{ '/work' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].work }}</a>
+  <a href="{{ '/about' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].about }}</a>
+  <a href="{{ '/contact' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].contact }}</a>
+
+  <!-- Language Switcher for Mobile -->
+  <div class="language-switcher flex flex-col space-y-2 mt-4">
+    <a href="{{ site.baseurl }}/" class="text-blue-600 dark:text-white {{ page.lang == 'en' ? 'font-bold' : '' }}">English</a>
+    <a href="{{ site.baseurl }}/de/" class="text-blue-600 dark:text-white {{ page.lang == 'de' ? 'font-bold' : '' }}">Deutsch</a>
+    <a href="{{ site.baseurl }}/es/" class="text-blue-600 dark:text-white {{ page.lang == 'es' ? 'font-bold' : '' }}">Español</a>
+  </div>
 </div>
 
 <!-- Scripts -->
