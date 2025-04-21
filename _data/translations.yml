@@ -1,0 +1,17 @@
+en:
+  home: "Home"
+  work: "Work"
+  about: "About"
+  contact: "Contact"
+
+de:
+  home: "Startseite"
+  work: "Arbeit"
+  about: "Über mich"
+  contact: "Kontakt"
+
+es:
+  home: "Inicio"
+  work: "Trabajo"
+  about: "Sobre mí"
+  contact: "Contacto"
