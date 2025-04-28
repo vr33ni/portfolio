@@ -1,60 +1,24 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
 title: Portfolio
-description: >- # this means to ignore newlines until "baseurl:"
-  Full-stack web developer portfolio showcasing recent projects, 
-  programming languages and other relevant skills and experiences.
-baseurl: "/portfolio" # the subpath of repository
- 
+description: >
+  Full-stack web developer portfolio showcasing recent projects,
+  programming languages, and other relevant skills and experiences.
+baseurl: "/portfolio" # Adjust if your site is hosted in a subdirectory
+
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-polyglot
+  - jekyll-redirect-from
 
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
-github_url: "https://github.com/vr33ni"
-linkedin_url: "https://linkedin.com/in/verena-lechner"
-
-lang: en
+# Language settings
 languages: ["en", "de", "es"]
-exclude_from_localization: 
+default_lang: "en"
+
+# Exclude from localization
+exclude_from_localization:
   - assets/
-  - _site/
+ 
+polyglot:
+  default_lang_in_subfolder: false
+parallel_localization: false

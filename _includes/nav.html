@@ -1,70 +1,136 @@
-<nav class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10">
+{% assign translations = site.pages | where: "page_id", page.page_id %}
+
+<nav
+  class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10"
+>
   <div class="max-w-4xl mx-auto flex justify-between items-center">
-    <!-- Hamburger Icon for Mobile -->
-    <button id="hamburger-icon" class="block md:hidden text-blue-600 dark:text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
+    <!-- Mobile Hamburger -->
+    <button id="hamburger-icon" class="block md:hidden">☰</button>
 
-
-    <!-- Navbar Links -->
+    <!-- Desktop Links -->
     <div id="navbar" class="hidden md:flex space-x-6">
-      <a href="{{ '/' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].home }}</a>
-      <a href="{{ '/work' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].work }}</a>
-      <a href="{{ '/about' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].about }}</a>
-      <a href="{{ '/contact' | relative_url }}" class="hover:underline">{{ site.data.translations[page.lang].contact }}</a>
+      <a href="{{ site.baseurl }}{{ lang_prefix }}/" class="hover:underline">
+        {{ site.data.translations[site.active_lang].home }}
+      </a>
+      <a
+        href="{{ site.baseurl }}{{ lang_prefix }}/work/"
+        class="hover:underline"
+      >
+        {{ site.data.translations[site.active_lang].work }}
+      </a>
+      <a
+        href="{{ site.baseurl }}{{ lang_prefix }}/about/"
+        class="hover:underline"
+      >
+        {{ site.data.translations[site.active_lang].about }}
+      </a>
+      <a
+        href="{{ site.baseurl }}{{ lang_prefix }}/contact/"
+        class="hover:underline"
+      >
+        {{ site.data.translations[site.active_lang].contact }}
+      </a>
     </div>
 
     <!-- Language Switcher -->
-    <div class="language-switcher hidden md:flex space-x-4">
-      <a href="{{ site.baseurl }}/" class="hover:underline {{ page.lang == 'en' ? 'font-bold' : '' }}">EN</a>
-      <a href="{{ site.baseurl }}/de/" class="hover:underline {{ page.lang == 'de' ? 'font-bold' : '' }}">DE</a>
-      <a href="{{ site.baseurl }}/es/" class="hover:underline {{ page.lang == 'es' ? 'font-bold' : '' }}">ES</a>
-    </div>
+   {% assign current_path = page.permalink %}
+
+<div class="language-switcher hidden md:flex space-x-4">
+<div class="wrapper">
+    {% assign is_first_language = true %}
+    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+    {% for tongue in site.languages %}
+      {% if is_first_language == false %}|{% endif %}
+      <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>
+      {% assign is_first_language = false %}
+    {% endfor %}
+</div>
+</div>
+
   </div>
 </nav>
 
 <!-- Dark Mode Toggle Button -->
-<button id="toggleDark"
-  class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded hover:shadow transition-transform hover:scale-105 duration-200">
-  Toggle Dark Mode
+<button
+  id="toggleDark"
+  class="fixed bottom-6 right-6 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded-full shadow hover:scale-110 transition"
+>
+  🌓
 </button>
 
 <!-- Mobile Menu (Initially Hidden) -->
-<div id="mobile-menu" class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800">
-  <a href="{{ '/' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].home }}</a>
-  <a href="{{ '/work' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].work }}</a>
-  <a href="{{ '/about' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].about }}</a>
-  <a href="{{ '/contact' | relative_url }}" class="text-blue-600 dark:text-white">{{ site.data.translations[page.lang].contact }}</a>
+<div
+  id="mobile-menu"
+  class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800"
+>
+  <a
+    href="{{ site.baseurl }}{{ lang_prefix }}/"
+    class="text-blue-600 dark:text-white"
+  >
+    {{ site.data.translations[site.active_lang].home }}
+  </a>
+  <a
+    href="{{ site.baseurl }}{{ lang_prefix }}/work/"
+    class="text-blue-600 dark:text-white"
+  >
+    {{ site.data.translations[site.active_lang].work }}
+  </a>
+  <a
+    href="{{ site.baseurl }}{{ lang_prefix }}/about/"
+    class="text-blue-600 dark:text-white"
+  >
+    {{ site.data.translations[site.active_lang].about }}
+  </a>
+  <a
+    href="{{ site.baseurl }}{{ lang_prefix }}/contact/"
+    class="text-blue-600 dark:text-white"
+  >
+    {{ site.data.translations[site.active_lang].contact }}
+  </a>
 
-  <!-- Language Switcher for Mobile -->
-  <div class="language-switcher flex flex-col space-y-2 mt-4">
-    <a href="{{ site.baseurl }}/" class="text-blue-600 dark:text-white {{ page.lang == 'en' ? 'font-bold' : '' }}">English</a>
-    <a href="{{ site.baseurl }}/de/" class="text-blue-600 dark:text-white {{ page.lang == 'de' ? 'font-bold' : '' }}">Deutsch</a>
-    <a href="{{ site.baseurl }}/es/" class="text-blue-600 dark:text-white {{ page.lang == 'es' ? 'font-bold' : '' }}">Español</a>
+  <!-- Mobile Language Switcher -->
+  <div class="language-switcher hidden md:flex space-x-4">
+    {% for lang in site.languages %} {% if lang == site.active_lang %}
+    <span class="font-bold uppercase">{{ lang }}</span>
+    {% else %} {% if lang == site.default_lang %}
+    <a
+      href="{{ site.baseurl }}{{ clean_path }}"
+      class="uppercase hover:underline"
+      >{{ lang }}</a
+    >
+    {% else %}
+    <a
+      href="{{ site.baseurl }}/{{ lang }}{{ clean_path }}"
+      class="uppercase hover:underline"
+      >{{ lang }}</a
+    >
+    {% endif %} {% endif %} {% endfor %}
   </div>
 </div>
 
 <!-- Scripts -->
 <script>
-  // Toggle the mobile menu visibility when the hamburger icon is clicked
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  hamburgerIcon.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+  // Hamburger Toggle
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
   });
 
-  // Dark mode toggle
-  window.addEventListener("DOMContentLoaded", () => {
+  // Dark Mode Toggle
+  window.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("toggleDark");
-    if (!toggle) return;
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    }
 
-    toggle.addEventListener("click", () => {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
+    // Set theme on load
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
   });
 </script>
