@@ -9,7 +9,6 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-polyglot
-  - jekyll-redirect-from
 
 # Language settings
 languages: ["en", "de", "es"]
