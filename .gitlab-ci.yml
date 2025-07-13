@@ -18,7 +18,6 @@ build:
 
 pages:
   stage: deploy
-  # this script can be as simple as a noop
   script:
     - echo "Publishing Pages…"
   dependencies:
