@@ -1,10 +1,4 @@
-
 image: ruby:3.3
-
-variables:
-  # Speeds up bundler installs
-  BUNDLE_PATH: vendor/bundle
-  GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
   - build
@@ -20,14 +14,17 @@ build:
     paths:
       - public
   only:
-    - master
+    - main
 
 pages:
   stage: deploy
+  # this script can be as simple as a noop
+  script:
+    - echo "Publishing Pages…"
   dependencies:
     - build
   artifacts:
     paths:
       - public
   only:
-    - master
+    - main
