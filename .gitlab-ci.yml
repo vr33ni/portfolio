@@ -14,7 +14,7 @@ build:
     paths:
       - public
   only:
-    - main
+    - master
 
 pages:
   stage: deploy
@@ -26,4 +26,4 @@ pages:
     paths:
       - public
   only:
-    - main
+    - master
