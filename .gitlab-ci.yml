@@ -1,0 +1,33 @@
+
+image: ruby:3.3
+
+variables:
+  # Speeds up bundler installs
+  BUNDLE_PATH: vendor/bundle
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - gem install bundler jekyll
+    - bundle install --jobs 4 --retry 3
+    - bundle exec jekyll build -d public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+pages:
+  stage: deploy
+  dependencies:
+    - build
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
