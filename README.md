@@ -12,4 +12,4 @@ git clone git@github.com:vr33ni/portfolio.git
 cd portfolio
 
 # Run locally
-bundle exec jekyll serve
+bundle exec jekyll serve --baseurl "/portfolio"

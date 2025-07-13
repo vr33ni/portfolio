@@ -2,7 +2,7 @@ title: Portfolio
 description: >
   Full-stack web developer portfolio showcasing recent projects,
   programming languages, and other relevant skills and experiences.
-baseurl: "/portfolio" # Adjust if your site is hosted in a subdirectory
+baseurl: "https://portfolio-4e3463.gitlab.io" # gitlab: "https://portfolio-4e3463.gitlab.io"  github: "/portfolio" # Adjust if your site is hosted in a subdirectory
 
 # Build settings
 theme: minima
