@@ -36,10 +36,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PAT_USER }}
-          external_repository: vr33ni/vr33ni.github.io
-          publish_branch: gh-pages # or 'main' if your Pages uses main
-          publish_dir: ./dist # your build output
-          destination_dir: portfolio # site will be at /portfolio
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./_site # This is the directory where Jekyll builds your site
