@@ -3,38 +3,40 @@ name: Jekyll site CI
 on:
   push:
     branches:
-      - master  # Replace with your preferred branch (e.g., 'main' or 'master')
+      - master # Replace with your preferred branch (e.g., 'main' or 'master')
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    # Step 2: Set up Ruby (ensure you are using the correct Ruby version)
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.3' # Adjust this to match the Ruby version in your project (or use .ruby-version file)
-        bundler-cache: true # Cache the Ruby gems (including Jekyll) for faster builds
+      # Step 2: Set up Ruby (ensure you are using the correct Ruby version)
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3" # Adjust this to match the Ruby version in your project (or use .ruby-version file)
+          bundler-cache: true # Cache the Ruby gems (including Jekyll) for faster builds
 
-    # Step 3: Install dependencies (Bundler and Jekyll)
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install
+      # Step 3: Install dependencies (Bundler and Jekyll)
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
 
-    # Step 4: Build the Jekyll site
-    - name: Build site
-      run: |
-        bundle exec jekyll build
+      # Step 4: Build the Jekyll site
+      - name: Build site
+        run: |
+          bundle exec jekyll build
 
-    # Step 5: Deploy to GitHub Pages (the gh-pages branch)
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GH_TOKEN }}
-        publish_dir: ./_site  # This is the directory where Jekyll builds your site
+      # Step 5: Deploy to GitHub Pages (the gh-pages branch)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
