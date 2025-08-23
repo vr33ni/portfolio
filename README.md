@@ -25,7 +25,7 @@ bundle exec jekyll serve
 
 ### Issues & discussions
 
-- 🐛 **Open issues / pull requests on GitHub**: <<https://github.com/vr33ni/portfolio/issues>  
+- 🐛 **Open issues / pull requests on GitHub**: <https://github.com/vr33ni/portfolio/issues>  
 - 🧰 GitLab mirror is **read-only**: please don’t open issues/MRs there.
 
 ### CI
