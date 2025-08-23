@@ -1,0 +1,228 @@
+<!DOCTYPE html> 
+<html lang="en">  <head>
+  <!-- 1️⃣ Apply saved theme BEFORE anything renders -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.classList.add(theme);
+    })();
+  </script>
+
+  <!-- 2️⃣ Meta and Page Title -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- 3️⃣ Load Tailwind with dark mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+
+  <!-- ✅ Include navigation -->
+  
+
+<nav
+  class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10"
+>
+  <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <!-- Mobile Hamburger -->
+    <button id="hamburger-icon" class="block md:hidden">☰</button>
+
+    <!-- Desktop Links -->
+    <div id="navbar" class="hidden md:flex space-x-6">
+      <a href="/" class="hover:underline">
+        Home
+      </a>
+      <a
+        href="/work/"
+        class="hover:underline"
+      >
+        Work
+      </a>
+      <a
+        href="/about/"
+        class="hover:underline"
+      >
+        About
+      </a>
+      <a
+        href="/contact/"
+        class="hover:underline"
+      >
+        Contact
+      </a>
+    </div>
+
+    <!-- Language Switcher -->
+   
+
+<div class="language-switcher hidden md:flex space-x-4">
+<div class="wrapper">
+    
+    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+    
+      
+      <a style="font-weight: bold;" href="/work/" >en</a>
+      
+    
+      |
+      <a  href="/de/work/" >de</a>
+      
+    
+      |
+      <a  href="/es/work/" >es</a>
+      
+    
+</div>
+</div>
+
+  </div>
+</nav>
+
+<!-- Dark Mode Toggle Button -->
+<button
+  id="toggleDark"
+  class="fixed bottom-6 right-6 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded-full shadow hover:scale-110 transition"
+>
+  🌓
+</button>
+
+<!-- Mobile Menu (Initially Hidden) -->
+<div
+  id="mobile-menu"
+  class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800"
+>
+  <a
+    href="/"
+    class="text-blue-600 dark:text-white"
+  >
+    Home
+  </a>
+  <a
+    href="/work/"
+    class="text-blue-600 dark:text-white"
+  >
+    Work
+  </a>
+  <a
+    href="/about/"
+    class="text-blue-600 dark:text-white"
+  >
+    About
+  </a>
+  <a
+    href="/contact/"
+    class="text-blue-600 dark:text-white"
+  >
+    Contact
+  </a>
+
+  <!-- Mobile Language Switcher -->
+  <div class="language-switcher hidden md:flex space-x-4">
+     
+    <span class="font-bold uppercase">en</span>
+       
+    <a
+      href="/de"
+      class="uppercase hover:underline"
+      >de</a
+    >
+        
+    <a
+      href="/es"
+      class="uppercase hover:underline"
+      >es</a
+    >
+      
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Hamburger Toggle
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Dark Mode Toggle
+  window.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("toggleDark");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    }
+
+    // Set theme on load
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  });
+</script>
+
+
+  <!-- ✅ Page Content -->
+  <main class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Portfolio</h1>
+<h2 class="text-xl font-semibold mb-3">Recent open source projects</h2>
+
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+  <h2 class="text-xl font-semibold mb-2">Eisbach tracker 🌊</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Vue 3 · Vite · Tailwind · Go · PostgreSQL · Docker · CI/CD · GitHub Pages</p>
+    <p class="mb-4">
+    A real-time surf tracker for the Eisbach wave in Munich. I built this to monitor the wave conditions using various APIs and web scraping and predict the crows levels at the current time.
+    It is a PWA that shows how I retrieve and present data from various data sources, work with CI/CD, and finally deploy my backend to a server, while sticking to Github Pages for the frontend.
+  </p>
+  <ul class="list-disc list-inside text-sm mb-4 space-y-1">
+    <li><strong>Frontend:</strong> Vue 3 app built with Vite & styled with Tailwind, deployed to GitHub Pages as a PWA</li>
+    <li><strong>Backend:</strong> Written in Go, handles data aggregation & processing via API and scraping</li>
+    <li><strong>Database:</strong> PostgreSQL hosted on Neon for storing historical and live surf data</li>
+    <li><strong>CI/CD:</strong> Dockerized backend with automatic deployment to Render</li>
+  </ul>
+  <a href="https://github.com/vr33ni/eisbachtracker" target="_blank" class="text-blue-500 hover:underline">View on GitHub</a>
+</div>
+<br/>
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+  <h2 class="text-xl font-semibold mb-2">Infineon Design System Stencil</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Stencil · Web Components · Storybook · Monorepo</p>
+  <p class="mb-4">
+    Open source design system built for Infineon, based on Stencil web components deployed to npm. 
+    I contributed to the architecture and development of reusable UI components across multiple frameworks (React, Angular, Vue), 
+    as well as the set up of CI/CD with GitHub Actions for automated testing and deployment.
+    The system supports design tokens and follows an atomic design methodology. 
+  </p>
+  <a href="https://github.com/verena-ifx/infineon-design-system-stencil" class="text-blue-500 hover:underline">View on GitHub</a>
+</div>
+<br/>
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+  <h2 class="text-xl font-semibold mb-2">Webshop Demo (Vue + Spring)</h2>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Vue.js · Spring Boot · REST API · PostgreSQL</p>
+  <p class="mb-4">
+    A full-stack webshop demo app built to explore client-server interaction using Vue and Spring Boot. It features product listings, dynamic routing, a PostgreSQL-backed backend, and RESTful communication between frontend and backend.
+  </p>
+  <a href="https://github.com/vr33ni/webshop-vuejs-spring" class="text-blue-500 hover:underline">View on GitHub</a>
+</div>
+
+
+  </main>
+
+  <!-- ✅ Include footer -->
+  <footer class="bg-white dark:bg-gray-800 text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
+    © 2025 Verena Lechner · Built with Jekyll & Tailwind CSS
+  </footer>
+  
+
+</body>
+</html>

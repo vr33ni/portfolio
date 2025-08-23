@@ -1,0 +1,219 @@
+<!DOCTYPE html> 
+<html lang="en">  <head>
+  <!-- 1️⃣ Apply saved theme BEFORE anything renders -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.classList.add(theme);
+    })();
+  </script>
+
+  <!-- 2️⃣ Meta and Page Title -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- 3️⃣ Load Tailwind with dark mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+
+  <!-- ✅ Include navigation -->
+  
+
+<nav
+  class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10"
+>
+  <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <!-- Mobile Hamburger -->
+    <button id="hamburger-icon" class="block md:hidden">☰</button>
+
+    <!-- Desktop Links -->
+    <div id="navbar" class="hidden md:flex space-x-6">
+      <a href="/de/" class="hover:underline">
+        Startseite
+      </a>
+      <a
+        href="/de/work/"
+        class="hover:underline"
+      >
+        Arbeit
+      </a>
+      <a
+        href="/de/about/"
+        class="hover:underline"
+      >
+        Über mich
+      </a>
+      <a
+        href="/de/contact/"
+        class="hover:underline"
+      >
+        Kontakt
+      </a>
+    </div>
+
+    <!-- Language Switcher -->
+   
+
+<div class="language-switcher hidden md:flex space-x-4">
+<div class="wrapper">
+    
+    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+    
+      
+      <a  href="/404.html" >en</a>
+      
+    
+      |
+      <a style="font-weight: bold;" href="/de/404.html" >de</a>
+      
+    
+      |
+      <a  href="/es/404.html" >es</a>
+      
+    
+</div>
+</div>
+
+  </div>
+</nav>
+
+<!-- Dark Mode Toggle Button -->
+<button
+  id="toggleDark"
+  class="fixed bottom-6 right-6 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded-full shadow hover:scale-110 transition"
+>
+  🌓
+</button>
+
+<!-- Mobile Menu (Initially Hidden) -->
+<div
+  id="mobile-menu"
+  class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800"
+>
+  <a
+    href="/de/"
+    class="text-blue-600 dark:text-white"
+  >
+    Startseite
+  </a>
+  <a
+    href="/de/work/"
+    class="text-blue-600 dark:text-white"
+  >
+    Arbeit
+  </a>
+  <a
+    href="/de/about/"
+    class="text-blue-600 dark:text-white"
+  >
+    Über mich
+  </a>
+  <a
+    href="/de/contact/"
+    class="text-blue-600 dark:text-white"
+  >
+    Kontakt
+  </a>
+
+  <!-- Mobile Language Switcher -->
+  <div class="language-switcher hidden md:flex space-x-4">
+      
+    <a
+      href=""
+      class="uppercase hover:underline"
+      >en</a
+    >
+       
+    <span class="font-bold uppercase">de</span>
+       
+    <a
+      href="/de/es"
+      class="uppercase hover:underline"
+      >es</a
+    >
+      
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Hamburger Toggle
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Dark Mode Toggle
+  window.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("toggleDark");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    }
+
+    // Set theme on load
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  });
+</script>
+
+
+  <!-- ✅ Page Content -->
+  <main class="max-w-4xl mx-auto p-6">
+    <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <div class="post-content">
+    <style type="text/css" media="screen">
+  .container {
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  h1 {
+    margin: 30px 0;
+    font-size: 4em;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+</style>
+
+<div class="container">
+  <h1>404</h1>
+
+  <p><strong>Page not found :(</strong></p>
+  <p>The requested page could not be found.</p>
+</div>
+
+  </div>
+
+</article>
+
+  </main>
+
+  <!-- ✅ Include footer -->
+  <footer class="bg-white dark:bg-gray-800 text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
+    © 2025 Verena Lechner · Built with Jekyll & Tailwind CSS
+  </footer>
+  
+
+</body>
+</html>

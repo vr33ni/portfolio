@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+<html lang="es">  <head>
+  <!-- 1️⃣ Apply saved theme BEFORE anything renders -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.classList.add(theme);
+    })();
+  </script>
+
+  <!-- 2️⃣ Meta and Page Title -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre mí</title>
+
+  <!-- 3️⃣ Load Tailwind with dark mode support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+
+  <!-- ✅ Include navigation -->
+  
+
+<nav
+  class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10"
+>
+  <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <!-- Mobile Hamburger -->
+    <button id="hamburger-icon" class="block md:hidden">☰</button>
+
+    <!-- Desktop Links -->
+    <div id="navbar" class="hidden md:flex space-x-6">
+      <a href="/es/" class="hover:underline">
+        Inicio
+      </a>
+      <a
+        href="/es/work/"
+        class="hover:underline"
+      >
+        Trabajo
+      </a>
+      <a
+        href="/es/about/"
+        class="hover:underline"
+      >
+        Sobre mí
+      </a>
+      <a
+        href="/es/contact/"
+        class="hover:underline"
+      >
+        Contacto
+      </a>
+    </div>
+
+    <!-- Language Switcher -->
+   
+
+<div class="language-switcher hidden md:flex space-x-4">
+<div class="wrapper">
+    
+    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+    
+      
+      <a  href="/about/" >en</a>
+      
+    
+      |
+      <a  href="/de/about/" >de</a>
+      
+    
+      |
+      <a style="font-weight: bold;" href="/es/about/" >es</a>
+      
+    
+</div>
+</div>
+
+  </div>
+</nav>
+
+<!-- Dark Mode Toggle Button -->
+<button
+  id="toggleDark"
+  class="fixed bottom-6 right-6 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded-full shadow hover:scale-110 transition"
+>
+  🌓
+</button>
+
+<!-- Mobile Menu (Initially Hidden) -->
+<div
+  id="mobile-menu"
+  class="hidden flex flex-col space-y-4 p-6 bg-blue-50 dark:bg-gray-800"
+>
+  <a
+    href="/es/"
+    class="text-blue-600 dark:text-white"
+  >
+    Inicio
+  </a>
+  <a
+    href="/es/work/"
+    class="text-blue-600 dark:text-white"
+  >
+    Trabajo
+  </a>
+  <a
+    href="/es/about/"
+    class="text-blue-600 dark:text-white"
+  >
+    Sobre mí
+  </a>
+  <a
+    href="/es/contact/"
+    class="text-blue-600 dark:text-white"
+  >
+    Contacto
+  </a>
+
+  <!-- Mobile Language Switcher -->
+  <div class="language-switcher hidden md:flex space-x-4">
+      
+    <a
+      href=""
+      class="uppercase hover:underline"
+      >en</a
+    >
+        
+    <a
+      href="/es/de"
+      class="uppercase hover:underline"
+      >de</a
+    >
+       
+    <span class="font-bold uppercase">es</span>
+     
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Hamburger Toggle
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const mobileMenu = document.getElementById("mobile-menu");
+  hamburgerIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Dark Mode Toggle
+  window.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("toggleDark");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    }
+
+    // Set theme on load
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  });
+</script>
+
+
+  <!-- ✅ Page Content -->
+  <main class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Sobre Mí</h1>
+
+<div class="flex flex-col md:flex-row items-center gap-8">
+  <img src="/assets/images/verena.jpg" alt="Yo" 
+  class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 rounded-full shadow-lg border-4 border-blue-500 object-cover">
+
+  <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+    Soy una desarrolladora web full-stack con más de 5 años de experiencia creando aplicaciones web escalables y de alto rendimiento. Me especializo en frameworks modernos de frontend como <strong>Vue.js</strong> y <strong>Stencil</strong>, así como en desarrollo backend utilizando <strong>Node.js</strong>, <strong>Go</strong> y <strong>Java (Spring Boot)</strong>.
+  </p>
+</div>
+
+<p class="text-lg mb-6 leading-relaxed">
+  Más allá del desarrollo de aplicaciones, tengo experiencia práctica trabajando con <strong>pipelines de CI/CD</strong>, contenerización utilizando <strong>Docker</strong> y despliegue de aplicaciones en plataformas como <strong>OpenShift</strong>. He ayudado a equipos empresariales a construir plataformas listas para producción, y ahora me enfoco en ofrecer esa misma calidad a startups, agencias y empresas que necesitan código limpio y confiable.
+</p>
+
+<h2 class="text-2xl font-semibold mb-4">En qué puedo ayudarte:</h2>
+<ul class="list-disc list-inside space-y-2 mb-8 text-lg">
+  <li>Crear SPAs rápidas y responsivas usando Vue.js</li>
+  <li>Desarrollar componentes web reutilizables con Stencil</li>
+  <li>Desarrollar APIs REST seguras y escalables (Node.js / Express / Java Spring Boot)</li>
+  <li>Integrar APIs de terceros, bases de datos y plataformas en la nube</li>
+  <li>Corregir errores, mejorar el rendimiento y refactorizar código legado</li>
+  <li>Colaborar con diseñadores o equipos para convertir especificaciones en productos reales</li>
+  <li>Pipelines de CI/CD, Docker y Despliegue: Configuración de flujos de trabajo automatizados con GitHub Actions, contenerización de aplicaciones con Docker y despliegue en plataformas como OpenShift.</li>
+</ul>
+
+<p class="text-lg mb-8">
+  Valoro la comunicación clara, la arquitectura limpia y los tiempos de entrega rápidos. Si estás buscando una desarrolladora confiable que cumpla con lo prometido — hablemos.
+</p>
+
+  </main>
+
+  <!-- ✅ Include footer -->
+  <footer class="bg-white dark:bg-gray-800 text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
+    © 2025 Verena Lechner · Built with Jekyll & Tailwind CSS
+  </footer>
+  
+
+</body>
+</html>
