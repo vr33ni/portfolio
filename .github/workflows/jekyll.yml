@@ -32,6 +32,11 @@ jobs:
         run: |
           bundle exec jekyll build
 
+      - name: Debug
+        run: |
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          git remote -v
+
       # Step 5: Deploy to GitHub Pages (the gh-pages branch)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
