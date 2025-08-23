@@ -37,6 +37,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          force_orphan: true
+          external_repository: vr33ni/vr33ni.github.io # target repo (your user site)
+          publish_branch: gh-pages # or 'main' if your Pages uses main
+          publish_dir: ./dist # your build output
+          destination_dir: portfolio # serves at /portfolio
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
