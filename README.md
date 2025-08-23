@@ -20,12 +20,12 @@ bundle exec jekyll serve
 > A read-only mirror is kept on **GitLab** for visibility and CI.
 
 [![GitHub Repo](https://img.shields.io/badge/repo-GitHub-black?logo=github)](https://github.com/<USER>/<REPO>)
-[![GitLab Mirror](https://img.shields.io/badge/mirror-GitLab-orange?logo=gitlab)](https://gitlab.com/<GROUP_OR_USER>/<REPO>)
+[![GitLab Mirror](https://img.shields.io/badge/mirror-GitLab-orange?logo=gitlab)](https://github.com/vr33ni/portfolio)
 [![Mirror Status](https://img.shields.io/badge/mirror-auto--sync-green)](#how-the-mirror-works)
 
 ### Issues & discussions
 
-- 🐛 **Open issues / pull requests on GitHub**: <https://github.com/><USER>/<REPO>/issues  
+- 🐛 **Open issues / pull requests on GitHub**: <<https://github.com/vr33ni/portfolio/issues>  
 - 🧰 GitLab mirror is **read-only**: please don’t open issues/MRs there.
 
 ### CI
