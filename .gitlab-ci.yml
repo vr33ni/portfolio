@@ -1,29 +1,34 @@
 image: ruby:3.3
 
-stages:
-  - build
-  - deploy
+stages: [build, deploy]
 
 build:
   stage: build
   script:
     - gem install bundler jekyll
     - bundle install --jobs 4 --retry 3
-    - bundle exec jekyll build -d public
+
+    # Derive production URL parts from GitLab’s CI variable
+    - echo "CI_PAGES_URL=$CI_PAGES_URL"
+    - SITE_URL="$(echo "$CI_PAGES_URL" | sed -E 's#(https?://[^/]+).*#\1#')"
+    - BASE_PATH="$(echo "$CI_PAGES_URL" | sed -E 's#https?://[^/]+##')"
+    - [ "$BASE_PATH" = "/" ] && BASE_PATH=""
+
+    # Create a tiny override config for CI
+    - printf 'url: "%s"\nbaseurl: "%s"\n' "$SITE_URL" "$BASE_PATH" > _config_ci.yml
+
+    # Build with your normal config + CI override
+    - bundle exec jekyll build --config _config.yml,_config_ci.yml -d public
   artifacts:
-    paths:
-      - public
+    paths: [public]
   only:
     - master
 
 pages:
   stage: deploy
-  script:
-    - echo "Publishing Pages…"
-  dependencies:
-    - build
+  script: echo "Publishing Pages…"
+  dependencies: [build]
   artifacts:
-    paths:
-      - public
+    paths: [public]
   only:
     - master
