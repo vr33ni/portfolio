@@ -6,22 +6,32 @@ permalink: /contact/
 page_id: contact
 ---
 
-
-{% assign show_success = page.url contains 'success=true' %}
+{% assign show_success = false %} {% if page.url contains 'success=true' %} {%
+assign show_success = true %} {% endif %}
 
 <h1 class="text-3xl font-bold mb-6 text-center">Let's Connect 🤝</h1>
 <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-10">
-  Whether you're building something exciting, need support conceptualizing and developing a web application, need help debugging, or just want to talk dev + languages — I'm all ears.
+  Whether you're building something exciting, need support conceptualizing and
+  developing a web application, need help debugging, or just want to talk dev +
+  languages — I'm all ears.
 </p>
 
 <div class="flex flex-col items-center gap-6">
   <!-- LinkedIn -->
-  <a href="{{ site.linkedin_url }}" class="flex items-center gap-3 text-blue-600 hover:underline" target="_blank">
+  <a
+    href="{{ site.linkedin_url }}"
+    class="flex items-center gap-3 text-blue-600 hover:underline"
+    target="_blank"
+  >
     <span>🔗 LinkedIn</span>
   </a>
 
   <!-- GitHub -->
-  <a href="{{ site.github_url }}" class="flex items-center gap-3 text-blue-600 hover:underline" target="_blank">
+  <a
+    href="{{ site.github_url }}"
+    class="flex items-center gap-3 text-blue-600 hover:underline"
+    target="_blank"
+  >
     <span>💻 GitHub</span>
   </a>
 </div>
