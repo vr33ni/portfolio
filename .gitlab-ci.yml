@@ -33,7 +33,7 @@ build:
 pages:
   stage: deploy
   script:
-    - echo "Publishing Pages…"
+    - echo "Publishing to Pages…"
   dependencies:
     - build
   artifacts:
