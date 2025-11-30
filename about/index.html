@@ -64,23 +64,33 @@
     <!-- Language Switcher -->
    
 
-<div class="language-switcher hidden md:flex space-x-4">
-<div class="wrapper">
+<div class="language-switcher hidden md:flex items-center space-x-3">
+  
     
-    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+      <span class="font-bold uppercase">en</span>
     
-      
-      <a style="font-weight: bold;" href="/portfolio/about/" >en</a>
-      
+    <span class="text-gray-400">|</span>
+  
     
-      |
-      <a  href="/portfolio/de/about/" >de</a>
-      
+      <a
+        href="/portfolio/de/about/"
+        class="uppercase hover:underline"
+      >
+        de
+      </a>
     
-      |
-      <a  href="/portfolio/es/about/" >es</a>
-      
+    <span class="text-gray-400">|</span>
+  
     
+      <a
+        href="/portfolio/es/about/"
+        class="uppercase hover:underline"
+      >
+        es
+      </a>
+    
+    
+  
 </div>
 </div>
 
