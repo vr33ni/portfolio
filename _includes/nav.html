@@ -35,15 +35,20 @@
     <!-- Language Switcher -->
    {% assign current_path = page.permalink %}
 
-<div class="language-switcher hidden md:flex space-x-4">
-<div class="wrapper">
-    {% assign is_first_language = true %}
-    <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
-    {% for tongue in site.languages %}
-      {% if is_first_language == false %}|{% endif %}
-      <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>
-      {% assign is_first_language = false %}
-    {% endfor %}
+<div class="language-switcher hidden md:flex items-center space-x-3">
+  {% for tongue in site.languages %}
+    {% if tongue == site.active_lang %}
+      <span class="font-bold uppercase">{{ tongue }}</span>
+    {% else %}
+      <a
+        {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %}
+        class="uppercase hover:underline"
+      >
+        {{ tongue }}
+      </a>
+    {% endif %}
+    {% unless forloop.last %}<span class="text-gray-400">|</span>{% endunless %}
+  {% endfor %}
 </div>
 </div>
 
