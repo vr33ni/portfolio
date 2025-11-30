@@ -47,6 +47,7 @@
 </div>
 </div>
 
+
   </div>
 </nav>
 
@@ -89,7 +90,7 @@
   </a>
 
   <!-- Mobile Language Switcher -->
-  <div class="language-switcher hidden md:flex space-x-4">
+<div class="language-switcher flex space-x-4 pt-4 border-t border-blue-100 dark:border-gray-700">
     {% for lang in site.languages %} {% if lang == site.active_lang %}
     <span class="font-bold uppercase">{{ lang }}</span>
     {% else %} {% if lang == site.default_lang %}
