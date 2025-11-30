@@ -12,6 +12,11 @@ plugins:
 # Language settings
 languages: ["en", "de", "es"]
 default_lang: "en"
+linkedin_url: "https://www.linkedin.com/in/verena-lechner"
+github_url: "https://www.github.com/vr33ni" # personal account (primary)
+github_org_url: "https://github.com/vr33ni-dev" # organisation (secondary)
+
+
 
 # Exclude from localization
 exclude_from_localization:
