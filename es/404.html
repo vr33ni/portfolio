@@ -1,33 +1,37 @@
-<!DOCTYPE html> 
-<html lang="en">  <head>
-  <!-- 1️⃣ Apply saved theme BEFORE anything renders -->
-  <script>
-    (function () {
-      const saved = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = saved || (prefersDark ? "dark" : "light");
-      document.documentElement.classList.add(theme);
-    })();
-  </script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- 1️⃣ Apply saved theme BEFORE anything renders -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme =
+          saved === "dark" || saved === "light"
+            ? saved
+            : prefersDark
+              ? "dark"
+              : "light";
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
 
-  <!-- 2️⃣ Meta and Page Title -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
+    <!-- 2️⃣ Meta and Page Title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
 
-  <!-- 3️⃣ Load Tailwind with dark mode support -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-    };
-  </script>
-</head>
+    <!-- 3️⃣ Load Tailwind (local build) -->
+    <link rel="stylesheet" href="/portfolio/assets/css/tailwind.css" />
+  </head>
 
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
-
-  <!-- ✅ Include navigation -->
-  
+  <body
+    class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans"
+  >
+    <!-- ✅ Include navigation -->
+    
 
 <nav
   class="bg-white dark:bg-gray-800 shadow p-4 text-blue-600 dark:text-blue-400 font-medium sticky top-0 z-10"
@@ -184,9 +188,8 @@
 </script>
 
 
-  <!-- ✅ Page Content -->
-  <main class="max-w-4xl mx-auto p-6">
-    <style type="text/css" media="screen">
+    <!-- ✅ Page Content -->
+    <main class="max-w-4xl mx-auto p-6"><style type="text/css" media="screen">
   .container {
     margin: 10px auto;
     max-width: 600px;
@@ -206,14 +209,12 @@
   <p><strong>Page not found :(</strong></p>
   <p>The requested page could not be found.</p>
 </div>
+</main>
 
-  </main>
-
-  <!-- ✅ Include footer -->
-  <footer class="bg-white dark:bg-gray-800 text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
+    <!-- ✅ Include footer -->
+    <footer class="bg-white dark:bg-gray-800 text-center text-sm text-gray-500 dark:text-gray-400 py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
     © 2026 Verena Lechner · Built with Jekyll & Tailwind CSS
   </footer>
   
-
-</body>
+  </body>
 </html>
