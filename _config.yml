@@ -4,6 +4,13 @@ description: >
   programming languages, and other relevant skills and experiences.
 baseurl: "/portfolio"
 
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - assets/css/tailwind-input.css
+
 # Build settings
 plugins:
   - jekyll-feed

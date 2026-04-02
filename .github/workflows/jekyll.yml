@@ -21,13 +21,25 @@ jobs:
           ruby-version: "3.3" # Adjust this to match the Ruby version in your project (or use .ruby-version file)
           bundler-cache: true # Cache the Ruby gems (including Jekyll) for faster builds
 
-      # Step 3: Install dependencies (Bundler and Jekyll)
+      # Step 3: Set up Node and build Tailwind CSS
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Build Tailwind CSS
+        run: |
+          npm ci
+          npm run build:css
+
+      # Step 4: Install dependencies (Bundler and Jekyll)
       - name: Install dependencies
         run: |
           gem install bundler
           bundle install
 
-      # Step 4: Build the Jekyll site
+      # Step 5: Build the Jekyll site
       - name: Build site
         run: |
           bundle exec jekyll build
