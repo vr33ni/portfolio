@@ -1,6 +1,7 @@
+---
 layout: default
 title: Contact
-lang: en
+lang: es
 permalink: /contact/
 page_id: contact
 ---
@@ -10,9 +11,10 @@ assign show_success = true %} {% endif %}
 
 <h1 class="text-3xl font-bold mb-6 text-center">Conectemos 🤝</h1>
 <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-10">
-  Ya sea que esté construyendo algo emocionante, necesite apoyo para conceptualizar y
-  desarrollar una aplicación web, necesite ayuda para depuración, o simplemente quiera hablar sobre desarrollo +
-  lenguajes — estoy atento.
+  Ya sea que esté construyendo algo emocionante, necesite apoyo para
+  conceptualizar y desarrollar una aplicación web, necesite ayuda para
+  depuración, o simplemente quiera hablar sobre desarrollo + lenguajes — estoy
+  atento.
 </p>
 
 <div class="flex flex-col items-center gap-6">
@@ -35,17 +37,10 @@ assign show_success = true %} {% endif %}
   </a>
 </div>
 
-{% include contact-form.html success=show_success %}
----
-layout: default
-title: Contacto
-lang: es
-permalink: /contact/
-page_id: contact
----
-
-{% assign show_success = false %} {% if page.url contains 'success=true' %} {%
-assign show_success = true %} {% endif %}
+{% include contact-form.html success=show_success %} --- layout: default title:
+Contacto lang: es permalink: /contact/ page_id: contact --- {% assign
+show_success = false %} {% if page.url contains 'success=true' %} {% assign
+show_success = true %} {% endif %}
 
 <h1 class="text-3xl font-bold mb-6 text-center">¡Conectemos! 🤝</h1>
 <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-10">

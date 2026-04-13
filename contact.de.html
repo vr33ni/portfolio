@@ -1,6 +1,7 @@
+---
 layout: default
 title: Contact
-lang: en
+lang: de
 permalink: /contact/
 page_id: contact
 ---
@@ -8,9 +9,14 @@ page_id: contact
 {% assign show_success = false %} {% if page.url contains 'success=true' %} {%
 assign show_success = true %} {% endif %}
 
-<h1 class="text-3xl font-bold mb-6 text-center">Lassen Sie uns in Kontakt treten 🤝</h1>
+<h1 class="text-3xl font-bold mb-6 text-center">
+  Lassen Sie uns in Kontakt treten 🤝
+</h1>
 <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-10">
-  Egal ob Sie etwas Spannendes entwickeln, Unterstützung bei der Konzeptualisierung und Entwicklung einer Webanwendung benötigen, Hilfe beim Debuggen brauchen oder einfach nur über Entwicklung und Sprachen sprechen möchten — ich bin ganz Ohr.
+  Egal ob Sie etwas Spannendes entwickeln, Unterstützung bei der
+  Konzeptualisierung und Entwicklung einer Webanwendung benötigen, Hilfe beim
+  Debuggen brauchen oder einfach nur über Entwicklung und Sprachen sprechen
+  möchten — ich bin ganz Ohr.
 </p>
 
 <div class="flex flex-col items-center gap-6">
@@ -33,17 +39,10 @@ assign show_success = true %} {% endif %}
   </a>
 </div>
 
-{% include contact-form.html success=show_success %}
----
-layout: default
-title: Kontakt
-lang: de
-permalink: /contact/
-page_id: contact
----
-
-{% assign show_success = false %} {% if page.url contains 'success=true' %} {%
-assign show_success = true %} {% endif %}
+{% include contact-form.html success=show_success %} --- layout: default title:
+Kontakt lang: de permalink: /contact/ page_id: contact --- {% assign
+show_success = false %} {% if page.url contains 'success=true' %} {% assign
+show_success = true %} {% endif %}
 
 <h1 class="text-3xl font-bold mb-6 text-center">
   Lass uns in Kontakt treten 🤝
