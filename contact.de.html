@@ -5,18 +5,14 @@ lang: de
 permalink: /contact/
 page_id: contact
 ---
-
 {% assign show_success = false %} {% if page.url contains 'success=true' %} {%
 assign show_success = true %} {% endif %}
 
-<h1 class="text-3xl font-bold mb-6 text-center">
-  Lass uns in Kontakt treten 🤝
-</h1>
+<h1 class="text-3xl font-bold mb-6 text-center">Lass uns vernetzen 🤝</h1>
 <p class="text-lg text-gray-600 dark:text-gray-300 text-center mb-10">
-  Ganz gleich, ob Sie eine spannende Idee haben, Unterstützung bei der
-  Konzeption und Entwicklung einer Webanwendung benötigen, Hilfe beim Debugging
-  brauchen oder einfach über Entwicklung und Sprachen sprechen möchten – ich
-  stehe Ihnen gerne zur Verfügung.
+  Ob du etwas Aufregendes entwickelst, Unterstützung bei der Konzeption und
+  Entwicklung einer Web-Anwendung benötigst, Hilfe beim Debugging brauchst oder
+  einfach über Entwicklung + Sprachen sprechen möchtest — ich höre zu.
 </p>
 
 <div class="flex flex-col items-center gap-6">
@@ -26,7 +22,7 @@ assign show_success = true %} {% endif %}
     class="flex items-center gap-3 text-blue-600 hover:underline"
     target="_blank"
   >
-    <span>🔗 LinkedIn</span>
+    <span>LinkedIn</span>
   </a>
 
   <!-- GitHub (personal) -->
@@ -35,10 +31,17 @@ assign show_success = true %} {% endif %}
     class="flex items-center gap-3 text-blue-600 hover:underline"
     target="_blank"
   >
-    <span>💻 GitHub (personal)</span>
+    <span>GitHub</span>
   </a>
-
-  <!-- GitHub (organization) -->
+  <!-- 
+  GitHub (organization) 
+  <a
+    href="{{ site.github_org_url }}"
+    class="flex items-center gap-3 text-blue-600 hover:underline"
+    target="_blank"
+  >
+    <span>🏢 GitHub (org)</span>
+  </a> -->
 </div>
 
 {% include contact-form.html success=show_success %}
